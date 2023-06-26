@@ -2,7 +2,7 @@
 - Using Anaconda or VSCode (jupyter in both)
 
 ## 1) Anaconda: installing google-cloud-bigquery
-from google.cloud import bigquery   
+Python import: from google.cloud import bigquery   
 to run `conda install google-cloud-bigquery` properly    
 be sure to add conda-forge as a channel:
 1. open conda powershell
@@ -13,20 +13,34 @@ be sure to add conda-forge as a channel:
 5. conda install google-cloud-bigquery
 - to install in python: `pip install google-cloud-bigquery` should be enough
 
-## 2) CLient to work (project string)
-Install Google Cloud SDK Shell .. make local auth-credentials?
-put Client(str) .. str whatever work for first
+## 2) bigquery.Client()
+To use the Google BigQuery Service we need a google account plus valid credentials.
+Google BigQuery Service provide use lot of datasets in different projects.    
+Provide credentials to ADC in a local develoment enviroment, User Credentials:
+1. Install and initialize the gcloud CLI.
+2. Create your credential file: gcloud auth application-default login
+- A login screen is displayed. After you log in, your credentials are stored in the local credential file used by ADC.
+- https://cloud.google.com/docs/authentication/provide-credentials-adc#cloud-based-dev
+- client = bigquery.Client()
+    - OSError: Project was not passed and could not be determined from the environment.
+	- You must pass an string to project method.
+	- A correct string is the PROJECT_ID or the PROJECT_NUMBER
+	- whatever string you pass is valid to view data but not to query
+	- client = bigquery.Client('whatever')
 
-## Job to work .. valid project ID..
-in this case 'service -account' and make a project
-- https://stackoverflow.com/questions/72823768/connecting-to-bigquery-by-python-projectid-and-datasetid-must-be-non-empty
+## Valid querys - valid ProjectId
+To avoid:
+BadRequest: 400 POST https://bigquery.googleapis.com/bigquery/v2/projects/whatever/jobs?prettyPrint=false: ProjectId and DatasetId must be non-empty
+
+Create a project en google:
+1. login to a google account
+2. got to Service Account Page
+3. select CREATE PROJECT 
+Get the ProjectId and the Project Number
+1. open Google Cloud SDK Shell (or Cloud Tools for PowerShell)
+2. run: gcloud projects list
+3. get the PROJECT_ID or PROJECT_NUMBER values.
+4. Use whichever of them 'as a string' in Client method:
+    - client = bigquery.Client('10151058852035')
 - https://developers.google.com/identity/protocols/oauth2/service-account
-    - `Service Account Page`
-- https://console.cloud.google.com/iam-admin/iam?orgonly=true&project=jmproject86385&supportedpurview=project
-- https://cloud.google.com/iam/docs/service-account-overview?_ga=2.90945628.-711726092.1682168229
-
-To get the projectID (what to put as a string in Client)
-you can see in 
-https://console.cloud.google.com/iam-admin/settings?project=jmproject86385&orgonly=true&supportedpurview=project
-or open Google Cloud SDK Shell (app installed early), and run:
-gcloud projects list
+- https://stackoverflow.com/questions/72823768/connecting-to-bigquery-by-python-projectid-and-datasetid-must-be-non-empty
