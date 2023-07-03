@@ -2,9 +2,9 @@
 - Using Anaconda or VSCode (jupyter in both)
 
 ## 1) Anaconda: installing google-cloud-bigquery
-Python import: from google.cloud import bigquery   
+Python import: *from google.cloud import bigquery*   
 to run `conda install google-cloud-bigquery` properly    
-be sure to add conda-forge as a channel:
+be sure to add *conda-forge* as a channel:
 1. open conda powershell
 2. to check: conda config --show channels
 3. if not present: conda config --add channels conda-forge
