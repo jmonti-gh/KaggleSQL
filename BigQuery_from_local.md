@@ -20,7 +20,7 @@ Provide credentials to ADC in a local develoment enviroment, User Credentials:
 1. Install and initialize the gcloud CLI.
 2. Create your credential file: gcloud auth application-default login
 - A login screen is displayed. After you log in, your credentials are stored in the local credential file used by ADC.
-- https://cloud.google.com/docs/authentication/provide-credentials-adc#cloud-based-dev
+- https://cloud.google.com/docs/authentication/provide-credentials-adc | https://cloud.google.com/docs/authentication/provide-credentials-adc#cloud-based-dev
 - client = bigquery.Client()
     - OSError: Project was not passed and could not be determined from the environment.
 	- You must pass an string to project method.
