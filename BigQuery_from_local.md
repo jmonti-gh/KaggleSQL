@@ -16,7 +16,9 @@ be sure to add __*conda-forge*__ as a channel:
 ## 2) bigquery.Client()
 To use the Google BigQuery Service we need a google account plus valid credentials.
 Google BigQuery Service provide use lot of datasets in different projects.    
-Provide credentials to ADC in a local develoment enviroment, User Credentials:
+Provide credentials to ADC (Application Default Credentials) in a local develoment enviroment.
+
+User Credentials:
 1. Install and initialize the gcloud CLI.
 2. Create your credential file: gcloud auth application-default login
 - A login screen is displayed. After you log in, your credentials are stored in the local credential file used by ADC.
